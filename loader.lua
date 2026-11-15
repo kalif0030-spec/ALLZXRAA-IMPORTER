@@ -5,8 +5,8 @@
     loadstring(game:HttpGet("https://raw.githubusercontent.com/kalif0030-spec/ALLZXRAA-IMPORTER/refs/heads/main/loader.lua"))()
 ]]
 
-local BASE_URL = "https://tion-aged-players-patients.trycloudflare.com" -- tanpa slash di akhir
-local INVITE   = "https://discord.gg/azmNAbHb2"                                                    -- link Discord (boleh kosong)
+local BASE_URL = "https://plays-houston-seating-commit.trycloudflare.com" -- tanpa slash di akhir
+local INVITE   = ""                                                    -- link Discord (boleh kosong)
 local RECHECK_SECONDS = 15
 
 local Players     = game:GetService("Players")
@@ -307,4 +307,3 @@ do
 end
 
 task.spawn(gateLoop)
-a
