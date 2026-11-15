@@ -3,12 +3,12 @@
   Simpan file ini di tempat yang URL-nya tetap (mis. GitHub raw). Player menjalankan:
 
     script_key = "KEY_DARI_DISCORD"
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/kalif0030-spec/ALLZXRAA-IMPORTER/refs/heads/main/loader.lua"))()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/USER/REPO/main/loader.lua"))()
 
   Script utama tidak ada di file ini; bot mengirimnya hanya kalau key cocok.
 ]]
 
-local BASE_URL = "https://operator-thousand-appendix-correct.trycloudflare.com" -- URL tunnel bot, tanpa slash di akhir
+local BASE_URL = "https://planned-each-players-soa.trycloudflare.com" -- URL tunnel bot, tanpa slash di akhir
 local INVITE   = ""                                                        -- link Discord (boleh kosong)
 
 local Players     = game:GetService("Players")
