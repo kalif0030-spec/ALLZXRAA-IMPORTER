@@ -5,7 +5,7 @@
     loadstring(game:HttpGet("https://raw.githubusercontent.com/kalif0030-spec/ALLZXRAA-IMPORTER/refs/heads/main/loader.lua"))()
 ]]
 
-local BASE_URL = "https://prescribed-governments-venture-gallery.trycloudflare.c" -- tanpa slash di akhir
+local BASE_URL = "https://allzxraa.banh120w.workers.dev"
 local INVITE   = ""                                                    -- link Discord (boleh kosong)
 local RECHECK_SECONDS = 15
 
@@ -220,7 +220,12 @@ local function checkKey(key, uid)
     if not code then return "offline" end
     if code == 200 then return "ok", res end
     if code == 403 then
-        return decodeCode(res) == "not_verified" and "not_verified" or "wrong_key"
+        local reason = decodeCode(res)
+        if reason == "blacklisted" then
+            local ok, data = pcall(function() return HttpService:JSONDecode(tostring(res.Body or "")) end)
+            return "blacklisted", (ok and type(data) == "table" and data.error) or "diblokir sementara"
+        end
+        return reason == "not_verified" and "not_verified" or "wrong_key"
     end
     if code == 429 then return "cooldown" end
     return "server_error"
@@ -243,7 +248,7 @@ end
 
 local STATUS_TEXT = {
     offline      = {"Server tidak bisa dihubungi. Akan dicek ulang otomatis.", ERR_COL},
-    not_verified = {"Belum verifikasi. Jalankan /verify di Discord dulu.", WARN_COL},
+    not_verified = {"Belum verifikasi. Jalankan /verify di Discord dulu. Menjalankan script tanpa verifikasi akan diblokir 7 hari.", WARN_COL},
     wrong_key    = {"Key salah. Pakai key terbaru dari /verify.", ERR_COL},
     cooldown     = {"Terlalu sering, tunggu sebentar.", WARN_COL},
     server_error = {"Server error. Akan dicek ulang otomatis.", ERR_COL},
@@ -258,6 +263,10 @@ local function tryKey(g, key)
     lastKey = key
     setStatus(g, "Mengecek...", ACCENT)
     local st, res = checkKey(key, uid)
+    if st == "blacklisted" then
+        setStatus(g, "DIBLOKIR: " .. tostring(res), ERR_COL)
+        return
+    end
     if st == "ok" then
         if not loadMain(tostring(res.Body or "")) then
             setStatus(g, "Script dari server tidak bisa dibaca. Hubungi admin.", ERR_COL)
