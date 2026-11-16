@@ -5,7 +5,7 @@
     loadstring(game:HttpGet("https://raw.githubusercontent.com/kalif0030-spec/ALLZXRAA-IMPORTER/refs/heads/main/loader.lua"))()
 ]]
 
-local BASE_URL = "https://plays-houston-seating-commit.trycloudflare.com" -- tanpa slash di akhir
+local BASE_URL = "https://tropical-treated-calendar-vbulletin.trycloudflare.com " -- tanpa slash di akhir
 local INVITE   = ""                                                    -- link Discord (boleh kosong)
 local RECHECK_SECONDS = 15
 
